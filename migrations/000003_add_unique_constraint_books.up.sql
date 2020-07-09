@@ -1,0 +1,1 @@
+ALTER TABLE books ADD CONSTRAINT publication UNIQUE (publication);

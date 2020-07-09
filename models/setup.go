@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var DB *gorm.DB
@@ -13,19 +13,19 @@ func ConnectDatabase() {
 
 	username := "root"
 	password := "p@ssw0rd"
-	dbName := "testGorm"
+	dbName := "test-gorm"
 	dbHost := "localhost"
+	dbPort := "3306"
+	dbType := "mysql"
 
-	dbUri := fmt.Sprintf("host=%s user=%s dbname=%s sslmode=disable password=%s", dbHost, username, dbName, password)
-	fmt.Println(dbUri)
+	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, dbHost, dbPort, dbName)
+	fmt.Println(dbURI)
 
-	database, err := gorm.Open("mysql", dbUri)
+	database, err := gorm.Open(dbType, dbURI)
 
 	if err != nil {
 		fmt.Print(err)
 	}
-
-	database.AutoMigrate(&Book{})
 
 	DB = database
 }

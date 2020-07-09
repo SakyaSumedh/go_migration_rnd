@@ -1,19 +1,38 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gin-gonic/gin"
 
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/mysql"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
+
+	"github.com/SakyaSumedh/testGorm/controllers"
 	"github.com/SakyaSumedh/testGorm/models"
 )
 
 func main() {
 	r := gin.Default()
 
-	// r.GET("/", func(c *gin.Context) {
-	// 	c.JSON(http.StatusOK, gin.H{"data": "Hello World!"})
-	// })
+	m, err := migrate.New(
+		"file://migrations/",
+		"mysql://root:p@ssw0rd@tcp(localhost:3306)/test-gorm")
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	fmt.Println("Migration up")
+	m.Steps(1000)
 
 	models.ConnectDatabase()
+
+	r.GET("/books", controllers.FindBooks)
+	r.POST("/books", controllers.CreateBook)
+	r.GET("/books/:id", controllers.FindBook)
+	r.PUT("/books/:id", controllers.UpdateBook)
+	r.DELETE("/books/:id", controllers.DeleteBook)
 
 	r.Run()
 }

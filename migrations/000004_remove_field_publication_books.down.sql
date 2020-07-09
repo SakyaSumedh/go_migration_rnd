@@ -1,0 +1,1 @@
+ALTER TABLE books ADD COLUMN publication varchar(255) not null unique;
