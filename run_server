@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PATH="$HOME/go/bin:$PATH"
+CompileDaemon --command="./go_migration_rnd"

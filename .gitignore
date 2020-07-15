@@ -17,3 +17,5 @@ vendor/
 # Environment Variables
 .env
 
+# builds
+go_migration_rnd
