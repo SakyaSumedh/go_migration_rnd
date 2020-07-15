@@ -7,4 +7,5 @@ require (
 	github.com/golang-migrate/migrate v3.5.4+incompatible
 	github.com/golang-migrate/migrate/v4 v4.11.0
 	github.com/jinzhu/gorm v1.9.14
+	github.com/joho/godotenv v1.3.0
 )
