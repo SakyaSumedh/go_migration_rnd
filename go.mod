@@ -1,4 +1,4 @@
-module github.com/SakyaSumedh/testGorm
+module github.com/SakyaSumedh/go_migration_rnd
 
 go 1.14
 

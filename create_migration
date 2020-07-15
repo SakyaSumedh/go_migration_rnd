@@ -1,0 +1,46 @@
+#!/bin/bash
+export PATH="$HOME/go/bin:$PATH"
+
+path="."
+name=""
+
+usage () {
+  echo "Usage: ./create_migration OPTIONS"
+  echo ""
+  echo "OPTIONS:"
+  echo "      -h       Display this help message"
+  echo "      -i       Path to migration"
+  echo "      -n       Migration name"
+  echo ""
+  echo "Commands:"
+  echo "      ./create_migration -i path/to/migrations -n migration_name"
+}
+
+while getopts ":i:n:h" opt;
+do
+  case "$opt" in 
+    h ) 
+      usage;
+      exit 1
+      ;;
+    i ) 
+      path=$OPTARG
+      ;;
+    n ) 
+      name=$OPTARG
+      ;;
+    \? ) echo "Unknown option: -$OPTARG" 1>&2
+      exit 1
+      ;;
+  esac
+done
+
+if ((OPTIND == 1))
+then
+    echo "No options specified"
+    exit 1;
+fi
+
+shift $((OPTIND -1))
+
+migrate create -ext sql -dir $path -seq $name

@@ -3,7 +3,7 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/SakyaSumedh/testGorm/models"
+	"github.com/SakyaSumedh/go_migration_rnd/models"
 	"github.com/gin-gonic/gin"
 )
 

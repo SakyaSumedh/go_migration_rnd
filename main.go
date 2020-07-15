@@ -9,8 +9,8 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/database/mysql"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 
-	"github.com/SakyaSumedh/testGorm/controllers"
-	"github.com/SakyaSumedh/testGorm/models"
+	"github.com/SakyaSumedh/go_migration_rnd/controllers"
+	"github.com/SakyaSumedh/go_migration_rnd/models"
 )
 
 func main() {
