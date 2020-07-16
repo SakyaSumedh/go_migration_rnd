@@ -28,6 +28,12 @@ func main() {
 
 	models.ConnectDatabase()
 
+	r.GET("/publications", controllers.FindPublications)
+	r.POST("/publications", controllers.CreatePublication)
+	r.GET("/publications/:id", controllers.FindPublication)
+	r.PUT("/publications/:id", controllers.UpdatePublication)
+	r.DELETE("/publications/:id", controllers.DeletePublication)
+
 	r.GET("/books", controllers.FindBooks)
 	r.POST("/books", controllers.CreateBook)
 	r.GET("/books/:id", controllers.FindBook)
