@@ -16,7 +16,7 @@ jobs:
             - run: echo "Second 1"
             - run: sleep 15
 
-workspaces:
+workflows:
     version: 2.1
     one_and_two:
         jobs:
