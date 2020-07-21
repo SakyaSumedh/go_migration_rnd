@@ -1,10 +1,24 @@
 version: 2.1
 jobs:
-    build:
+    one:
         docker:
-            - image: circleci/golang:1.9
-        working_directory: /go/src/github.com/{{CIRCLE_PROJECT_USERNAME}}/{{CIRCLE_PROJECT_REPONAME}}
+            - image: circleci/golang:latest
+        # working_directory: /go/src/github.com/{{CIRCLE_PROJECT_USERNAME}}/{{CIRCLE_PROJECT_REPONAME}}
         steps:
             - checkout
             - run: echo "hello world"
-            
+            - run: sleep 25
+    two:
+        docker:
+            - image: circleci/golang:latest
+        steps:
+            - checkout
+            - run: echo "Second 1"
+            - run: sleep 15
+
+workspaces:
+    version: 2.1
+    one_and_two:
+        jobs:
+            - one
+            - two
