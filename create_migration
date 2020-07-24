@@ -43,4 +43,4 @@ fi
 
 shift $((OPTIND -1))
 
-migrate create -ext sql -dir $path -seq $name
+migrate create -ext sql -dir $path -format unix $name
