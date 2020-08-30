@@ -70,7 +70,7 @@ func main() {
 	dbConfig := buildDBConfig(dbHost, dbPort, dbUser, dbName, dbPassword, dbType)
 	dbURL := dbURL(dbConfig)
 
-	m, err := migrate.New("file://api/migrations/", dbType+"://"+dbURL)
+	m, err := migrate.New("file://migrations/", dbType+"://"+dbURL)
 	if err != nil {
 		panic(err)
 	}
