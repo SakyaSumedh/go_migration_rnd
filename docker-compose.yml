@@ -1,0 +1,37 @@
+version: '3'
+
+volumes:
+  dbdata:
+
+networks:
+  golang:
+    driver: bridge
+
+services:
+  web:
+    build: .
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/app
+    container_name: golang_migrate_rnd
+    depends_on:
+      - db
+    networks:
+      - golang
+
+  db:
+    build: ./docker/db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    container_name: golang_migrate_db
+    hostname: golang_db
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql 
+    networks:
+      - golang
