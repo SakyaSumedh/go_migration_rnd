@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 volumes:
   dbdata:
@@ -9,12 +9,14 @@ networks:
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
     ports:
-      - 9000:9000
+      - 8080:8080
     volumes:
-      - .:/app
-    container_name: golang_migrate_rnd
+      - .:/home/rnd_user/project
+    container_name: golang_migrate_api
     depends_on:
       - db
     networks:

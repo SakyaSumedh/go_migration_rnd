@@ -23,9 +23,7 @@ func ConnectDatabase() {
 	dbHost := os.Getenv("DB_HOST")
 	dbPort := os.Getenv("DB_PORT")
 	dbType := os.Getenv("DB_TYPE")
-
 	dbURI := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", username, password, dbHost, dbPort, dbName)
-	fmt.Println(dbURI)
 
 	database, err := gorm.Open(dbType, dbURI)
 

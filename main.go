@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/mysql"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 
@@ -68,14 +68,14 @@ func main() {
 
 	fmt.Println("--- Connecting Migrations ---")
 	dbConfig := buildDBConfig(dbHost, dbPort, dbUser, dbName, dbPassword, dbType)
-	dbURL := dbURL(dbConfig)
+	_ = dbURL(dbConfig)
 
-	m, err := migrate.New("file://migrations/", dbType+"://"+dbURL)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("--- Running Migration ---")
-	m.Steps(1000)
+	// m, err := migrate.New("file:///migrations/", dbType+"://"+dbURL)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("--- Running Migration ---")
+	// m.Steps(1000)
 
 	models.ConnectDatabase()
 

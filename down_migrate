@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 db_name=""
 db_type=""
@@ -47,7 +47,7 @@ do
       db_user=$OPTARG
       ;;
     p )
-      db_password=`python -c "import urllib.parse; print(urllib.parse.quote('$OPTARG', ''))"`
+      db_password=`python3 -c "import urllib.parse; print(urllib.parse.quote('$OPTARG', ''))"`
       ;;
     H ) 
       db_host=$OPTARG
